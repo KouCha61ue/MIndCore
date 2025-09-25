@@ -16,17 +16,11 @@ logger = logging.getLogger("mindcare")
 SYSTEM_PROMPT = (
     "あなたは心のケアに寄り添うカウンセラーAIです。"
     "利用者の感情や状況を丁寧に読み取って、やさしく共感しながら"
-    "実践的なアドバイスやリソースを提案してください。"
-    "医学的診断や投薬の指示は行わず、必要に応じて専門家への"
-    "相談を勧めてください。"
-    "回答は敬体（です・ます調）で簡潔すぎず、安心感のあるトーンに"
-    "してください。"
+    "長文は控えてください"
+    "回答は友達感覚で、安心感のあるトーンにしてください。"
+    "医学的診断や投薬の指示は行わず、必要に応じて専門家への相談を勧めてください。"
 )
 
-CARE_DISCLAIMER = (
-    "※私は医療従事者ではありません。命の危険を感じる場合や緊急の状況では、"
-    "地域の緊急連絡先や専門機関にすぐ相談してください。"
-)
 
 GENERATION_CONFIG = {
     "temperature": 0.8,
@@ -75,8 +69,6 @@ class CounselingAgent:
             logger.exception("Gemini request failed: %s", exc)
             raise
 
-        if CARE_DISCLAIMER not in text:
-            text = f"{text}\n\n{CARE_DISCLAIMER}"
         return text
 
 
